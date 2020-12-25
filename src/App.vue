@@ -1,30 +1,29 @@
 <template>
-  <div id="app">
-    <ModulesExample />
-  </div>
+   <div id="app">
+      <Editor />
+   </div>
 </template>
 
 <script>
-import ModulesExample from "@/components/ModulesExample";
+   import Editor from './System/Editor';
 
-export default {
-  components: {
-    ModulesExample
-  }
-};
+   export default {
+      components: {
+         Editor,
+      },
+   };
 </script>
 
 <style lang="scss">
-#app {
-  height: 100vh;
-  width: 100vw;
-}
+   #app {
+      height: 100vh;
+      width: 100vw;
+   }
 
-// Styles from codepen which are necessary
-html,
-body {
-  margin: 0;
-  height: 100%;
-  width: 100%;
-}
+   html,
+   body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+   }
 </style>

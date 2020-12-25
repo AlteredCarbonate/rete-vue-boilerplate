@@ -11,6 +11,7 @@
     "@babel/polyfill": "^7.12.1",
     "alight": "^0.14.1",
     "core-js": "^2.6.12",
+    "prettier": "^2.2.1",
     "rete": "^1.4.4",
     "rete-alight-render-plugin": "^0.1.5",
     "rete-area-plugin": "^0.2.1",
