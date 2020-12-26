@@ -1,6 +1,6 @@
 import Rete from 'rete';
 import { StringSocket } from '../../System/Sockets';
-import { addNodeToLibarySimple } from '../../System/Handler/Nodes';
+import { addNodeToLibary } from '../../System/Handler/Nodes';
 
 const NodeKey = 'String';
 
@@ -21,4 +21,4 @@ export default class NodeString extends Rete.Component {
    }
 }
 
-addNodeToLibarySimple(NodeString, NodeKey);
+addNodeToLibary(NodeString, NodeKey);

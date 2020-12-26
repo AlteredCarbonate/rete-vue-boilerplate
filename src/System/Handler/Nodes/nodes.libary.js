@@ -6,6 +6,7 @@ export let NodesLibary = [];
  * @param {String} NodeKey
  */
 export function addNodeToLibary(Component, NodeKey) {
+   console.log(`Adding ${NodeKey}`);
    NodesLibary.push({
       component: Node,
       key: NodeKey,
