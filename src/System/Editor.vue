@@ -4,14 +4,14 @@
 
 <script>
    import Rete from 'rete';
-   // import alight from 'alight';
+   
    import ConnectionPlugin from 'rete-connection-plugin';
    import AlightRenderPlugin from 'rete-alight-render-plugin';
    import ContextMenuPlugin from 'rete-context-menu-plugin';
    import ModulePlugin from 'rete-module-plugin';
-   // import AreaPlugin from 'rete-area-plugin';
-   import NodeString from './components/NodeString';
-   import NodeLog from './components/NodeLog';
+
+   import NodeString from '../Components/Nodes/NodeString';
+   import NodeLog from '../Components/Nodes/NodeLog';
 
    export default {
       data() {
@@ -21,30 +21,18 @@
             editorID: 'demo@0.1.0',
          };
       },
-      methods: {
-         // async openModule() {
-         //    this.editor.trigger('process');
-         // },
-         // addModule() {
-         //    this.modules[
-         //       'module' + Object.keys(this.modules).length + '.rete'
-         //    ] = {
-         //       data: this.initialData(),
-         //    };
-         // },
-         // initialData() {
-         //    return { id: 'demo@0.1.0', nodes: {} };
-         // },
-      },
+      methods: {},
       mounted() {
          let container = document.querySelector('#rete');
 
-         // alight('#modules', {
-         //    modules: this.modules,
-         //    addModule: this.addModule,
-         //    openModule: this.openModule,
-         // });
+         this.editor = new Rete.NodeEditor(this.editorID, container);
+         this.engine = new Rete.Engine(this.editorID);
 
+         this.editor.use(ConnectionPlugin, { curvature: 1 });
+      methods: {
+      },
+      mounted() {
+         let container = document.querySelector('#rete');
          this.editor = new Rete.NodeEditor(this.editorID, container);
          this.engine = new Rete.Engine(this.editorID);
 
@@ -61,16 +49,13 @@
             async () => {
                console.log('process');
                await this.engine.abort();
-               // await engine.process(this.editor.toJSON());
             }
          );
          this.editor.view.resize();
-         // this.openModule('index.rete').then(() => {
-         //    AreaPlugin.zoomAt(this.editor);
-         // });
 
          const NodeStringComp = new NodeString();
          const NodeLogComp = new NodeLog();
+         
          this.editor.register(NodeStringComp);
          this.editor.register(NodeLogComp);
          this.engine.register(NodeLogComp);
