@@ -1,5 +1,6 @@
 <template>
    <div id="app">
+      <button>Run</button>
       <Editor />
    </div>
 </template>

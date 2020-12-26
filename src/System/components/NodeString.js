@@ -1,6 +1,5 @@
 import Rete from 'rete';
-
-let numSocket = new Rete.Socket('Number');
+import { numSocket } from './NodeLog';
 
 export default class NodeString extends Rete.Component {
    constructor() {

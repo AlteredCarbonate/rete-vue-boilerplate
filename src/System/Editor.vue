@@ -1,7 +1,5 @@
 <template>
-   <div class="modules-example">
-      <div id="rete" class="node-editor" />
-   </div>
+   <div id="rete" class="node-editor" />
 </template>
 
 <script>
@@ -19,6 +17,7 @@
       data() {
          return {
             editor: null,
+            engine: null,
             editorID: 'demo@0.1.0',
          };
       },
@@ -47,18 +46,21 @@
          // });
 
          this.editor = new Rete.NodeEditor(this.editorID, container);
+         this.engine = new Rete.Engine(this.editorID);
+
          this.editor.use(ConnectionPlugin, { curvature: 0.4 });
          this.editor.use(AlightRenderPlugin);
          this.editor.use(ContextMenuPlugin);
 
-         let engine = new Rete.Engine(this.editorID);
-
-         this.editor.use(ModulePlugin, { engine, modules: this.modules });
+         this.editor.use(ModulePlugin, {
+            engine: this.engine,
+            modules: this.modules,
+         });
          this.editor.on(
             'process nodecreated noderemoved connectioncreated connectionremoved',
             async () => {
-               // console.log('process');
-               // await engine.abort();
+               console.log('process');
+               await this.engine.abort();
                // await engine.process(this.editor.toJSON());
             }
          );
@@ -71,6 +73,8 @@
          const NodeLogComp = new NodeLog();
          this.editor.register(NodeStringComp);
          this.editor.register(NodeLogComp);
+         this.engine.register(NodeLogComp);
+         this.engine.register(NodeStringComp);
       },
    };
 </script>

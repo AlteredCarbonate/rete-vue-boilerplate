@@ -1,6 +1,6 @@
 import Rete from 'rete';
 
-let numSocket = new Rete.Socket('Number');
+export let numSocket = new Rete.Socket('String');
 
 export default class NodeLog extends Rete.Component {
    constructor() {
@@ -13,7 +13,5 @@ export default class NodeLog extends Rete.Component {
       node.addInput(inp);
    }
 
-   worker(node, inputs, outputs) {
-      // outputs['num'] = node.data.num;
-   }
+   worker(node, inputs, outputs) {}
 }
