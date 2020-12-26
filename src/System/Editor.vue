@@ -4,6 +4,7 @@
 
 <script>
    import Rete from 'rete';
+   
    import ConnectionPlugin from 'rete-connection-plugin';
    import AlightRenderPlugin from 'rete-alight-render-plugin';
    import ContextMenuPlugin from 'rete-context-menu-plugin';
@@ -28,6 +29,14 @@
          this.engine = new Rete.Engine(this.editorID);
 
          this.editor.use(ConnectionPlugin, { curvature: 1 });
+      methods: {
+      },
+      mounted() {
+         let container = document.querySelector('#rete');
+         this.editor = new Rete.NodeEditor(this.editorID, container);
+         this.engine = new Rete.Engine(this.editorID);
+
+         this.editor.use(ConnectionPlugin, { curvature: 0.4 });
          this.editor.use(AlightRenderPlugin);
          this.editor.use(ContextMenuPlugin);
 
@@ -46,6 +55,7 @@
 
          const NodeStringComp = new NodeString();
          const NodeLogComp = new NodeLog();
+         
          this.editor.register(NodeStringComp);
          this.editor.register(NodeLogComp);
          this.engine.register(NodeLogComp);
