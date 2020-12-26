@@ -1,8 +1,12 @@
+/**
+ * Array of a Node Libary
+ * @type {*[]}
+ */
 export let NodesLibary = [];
 
 /**
  *
- * @param {Rete.Component} Component
+ * @param {Component} Component
  * @param {String} NodeKey
  */
 export function addNodeToLibary(Component, NodeKey) {

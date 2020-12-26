@@ -3,7 +3,7 @@
 </template>
 
 <script>
-   import Rete from 'rete';
+   import { editor, engine } from '../globals';
 
    import ConnectionPlugin from 'rete-connection-plugin';
    import AlightRenderPlugin from 'rete-alight-render-plugin';
@@ -16,41 +16,41 @@
    export default {
       data() {
          return {
-            editor: null,
-            engine: null,
-            editorID: 'demo@0.1.0',
+            $editor: null,
+            $engine: null,
          };
       },
-      methods: {},
       mounted() {
          let container = document.querySelector('#rete');
-         this.editor = new Rete.NodeEditor(this.editorID, container);
-         this.engine = new Rete.Engine(this.editorID);
+         this.$editor = editor(container);
+         this.$engine = engine();
 
-         this.editor.use(ConnectionPlugin, { curvature: 0.4 });
-         this.editor.use(AlightRenderPlugin);
-         this.editor.use(ContextMenuPlugin);
+         if (this.$editor || this.$engine) {
+            this.$editor.use(ConnectionPlugin, { curvature: 0.4 });
+            this.$editor.use(AlightRenderPlugin);
+            this.$editor.use(ContextMenuPlugin);
 
-         this.editor.use(ModulePlugin, {
-            engine: this.engine,
-            modules: this.modules,
-         });
-         this.editor.on(
-            'process nodecreated noderemoved connectioncreated connectionremoved',
-            async () => {
-               console.log('process');
-               await this.engine.abort();
-            }
-         );
-         this.editor.view.resize();
+            this.$editor.use(ModulePlugin, {
+               engine: this.$engine,
+               modules: this.modules,
+            });
+            this.$editor.on(
+               'process nodecreated noderemoved connectioncreated connectionremoved',
+               async () => {
+                  console.log('process');
+                  await this.$engine.abort();
+               }
+            );
+            this.$editor.view.resize();
 
-         const NodeStringComp = new NodeString();
-         const NodeLogComp = new NodeLog();
+            const NodeStringComp = new NodeString();
+            const NodeLogComp = new NodeLog();
 
-         this.editor.register(NodeStringComp);
-         this.editor.register(NodeLogComp);
-         this.engine.register(NodeLogComp);
-         this.engine.register(NodeStringComp);
+            this.$editor.register(NodeStringComp);
+            this.$editor.register(NodeLogComp);
+            this.$engine.register(NodeLogComp);
+            this.$engine.register(NodeStringComp);
+         }
       },
    };
 </script>
