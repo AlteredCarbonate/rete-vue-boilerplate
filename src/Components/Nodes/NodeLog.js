@@ -1,6 +1,6 @@
 import Rete from 'rete';
 import { StringSocket } from '../../System/Sockets';
-import { Nodes } from '../../System/Handler';
+import { addNodeToLibary } from '../../System/Handler/Nodes';
 
 const NodeKey = 'Console';
 
@@ -15,7 +15,7 @@ export default class NodeLog extends Rete.Component {
       node.addInput(inp);
    }
 
-   // worker(node, inputs, outputs) {}
+   worker(node, inputs, outputs) {}
 }
 
-Nodes.addNode(NodeLog, NodeKey);
+addNodeToLibary(NodeLog, NodeKey);

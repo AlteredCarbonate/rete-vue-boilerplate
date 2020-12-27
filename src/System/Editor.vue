@@ -9,7 +9,9 @@
    import AlightRenderPlugin from 'rete-alight-render-plugin';
    import ContextMenuPlugin from 'rete-context-menu-plugin';
    import ModulePlugin from 'rete-module-plugin';
-   import { Nodes } from './Handler';
+
+   import NodeString from '../Components/Nodes/NodeString';
+   import NodeLog from '../Components/Nodes/NodeLog';
 
    export default {
       data() {
@@ -41,7 +43,13 @@
             );
             this.$editor.view.resize();
 
-            Nodes.registerAllNodes(this.$editor, this.$engine);
+            const NodeStringComp = new NodeString();
+            const NodeLogComp = new NodeLog();
+
+            this.$editor.register(NodeStringComp);
+            this.$editor.register(NodeLogComp);
+            this.$engine.register(NodeLogComp);
+            this.$engine.register(NodeStringComp);
          }
       },
    };
