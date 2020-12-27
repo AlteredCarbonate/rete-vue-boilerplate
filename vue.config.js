@@ -1,3 +1,4 @@
 module.exports = {
-  runtimeCompiler: true
+   publicPath: './',
+   runtimeCompiler: true,
 };

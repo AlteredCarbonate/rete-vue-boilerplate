@@ -6,7 +6,7 @@ const NodeKey = 'Console';
 
 export default class NodeLog extends Rete.Component {
    constructor() {
-      super(NodeKey);
+      super('Console');
    }
 
    builder(node) {
@@ -17,5 +17,4 @@ export default class NodeLog extends Rete.Component {
 
    worker(node, inputs, outputs) {}
 }
-
-addNodeToLibary(NodeLog, NodeKey);
+addNodeToLibary(NodeLog, 'Console');

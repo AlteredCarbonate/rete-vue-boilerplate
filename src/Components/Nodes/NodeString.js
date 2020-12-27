@@ -20,5 +20,4 @@ export default class NodeString extends Rete.Component {
       // outputs['num'] = node.data.num;
    }
 }
-
-addNodeToLibary(NodeString, NodeKey);
+addNodeToLibary(NodeString, 'String');
