@@ -6,7 +6,7 @@ const NodeKey = 'String';
 
 export default class NodeString extends Rete.Component {
    constructor() {
-      super('String');
+      super(NodeKey);
    }
 
    builder(node) {
@@ -20,4 +20,7 @@ export default class NodeString extends Rete.Component {
       // outputs['num'] = node.data.num;
    }
 }
-addNodeToLibary(NodeString, 'String');
+
+addNodeToLibary(NodeString, 'String').then(() => {
+   addNodeToLibary(NodeString, 'String');
+});

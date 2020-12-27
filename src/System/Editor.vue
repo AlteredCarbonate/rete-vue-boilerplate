@@ -9,6 +9,8 @@
    import AlightRenderPlugin from 'rete-alight-render-plugin';
    import ContextMenuPlugin from 'rete-context-menu-plugin';
    import ModulePlugin from 'rete-module-plugin';
+
+   import '../Components/Nodes';
    import { registerAllNodes } from './Handler/Nodes';
 
    export default {

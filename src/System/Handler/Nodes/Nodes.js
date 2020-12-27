@@ -29,31 +29,43 @@ export function registerAllNodes(editor, engine) {
       editor.register(new e.component());
       engine.register(new e.component());
    });
-}
-
-/**
- * Registers a specific Node in Libary
- * @param node
- * @param editor
- * @param engine
- */
-export function registerOneNode(node, editor, engine) {
-   console.log(`Registering Node ${node.key}`);
-
-   editor.register(new node.component());
-   engine.register(new node.component());
+   // console.log(NodesArray);
 }
 
 /**
  *
- * @param {Component} Component
- * @param {String} NodeKey
+ * @param {Component} component
+ * @param {String} nodeKey
  */
-export function addNodeToLibary(Component, NodeKey) {
-   console.log(`Adding ${NodeKey}`);
-   NodesArray.push({
-      component: Component,
-      key: NodeKey,
-      isRegistered: false,
+export function addNodeToLibary(component, nodeKey) {
+   return new Promise((resolve) => {
+      console.log('AddNodeToLibary');
+      let node = {
+         component: component,
+         key: nodeKey,
+      };
+
+      // TODO FILTER DOESN'T WORK
+      if (NodesArray.length !== 0) {
+         NodesArray.forEach((e) => {
+            console.log('Filtering');
+            console.log(NodesArray);
+            if (e.key === node.key || node.key === undefined) {
+               console.log(`${nodeKey} Already added, moving on.`);
+               resolve();
+            } else {
+               addNode(node);
+               resolve();
+            }
+         });
+      } else {
+         addNode(node);
+         resolve();
+      }
    });
+}
+
+function addNode(node) {
+   NodesArray.push(node);
+   console.log(`Adding ${node.key}`);
 }
